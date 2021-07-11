@@ -23,22 +23,21 @@ enemy = init_enemy()
 combat_com = [f"{player.name} lashes out, looks like he hit him pretty hard! {enemy.name} isn't just taking a beating thouh-gh, he responds right back with a left hook!", 
 f"{enemy.name} casts ice shard! But oh no he didn't see the shuriken from {player.name} coming! That oughta hurt.", 
 f"{player.name} and {enemy.name} both ready their swords for a strike! They hit each other at the exact same time, wow!", 
-f"d", 
-f"e"]
+f"{player.name} and {enemy.name} are fighting vigorously, hitting each other unrelentlessly."]
 
 while True:
 
     move = int(input(f"LET THE BATTLE COMMENCE!!\n{player} -- vs -- {enemy}\nWhat would you like to do? Please choose from:\n1. Attack\n2. Flee\n3. Drip check\n>"))
     if move ==1:
         while player.hp > 0 and enemy.hp > 0:
-            player.set_hp(player.hp-enemy.damage)
-            enemy.set_hp(enemy.hp-player.damage)
+            player.take_damage(enemy.damage)
+            enemy.take_damage(player.damage)
             print(random.choice(combat_com))
             print(f"Result:\n{player.name} HP: {player.hp}  --  {enemy.name} HP: {enemy.hp}")
 
-            if player.hp < 0:
+            if player.hp <= 0:
                 print("~You died~")
-            elif enemy.hp < 0:
+            elif enemy.hp <= 0:
                 print("~VICTORY~")
             else:
                 input("Press enter to strike again")

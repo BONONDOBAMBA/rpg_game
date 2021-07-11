@@ -7,5 +7,5 @@ class Entity:
     def __str__(self):
         return f"<Name: {self.name} - HP: {self.hp} - Damage: {self.damage}>"
 
-    def set_hp(self, x):
-        self.hp = x
+    def take_damage(self, x):
+        self.hp = self.hp - x
